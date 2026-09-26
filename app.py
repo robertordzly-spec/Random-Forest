@@ -5,6 +5,12 @@ Aplicación Streamlit.   Ejecutar:  streamlit run app.py
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
+# Garantiza que los módulos junto a app.py se encuentren en cualquier entorno (Streamlit Cloud incluido)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 import io
 from datetime import date, datetime
 
@@ -13,9 +19,9 @@ import pandas as pd
 import sklearn
 import streamlit as st
 
-from src import datos as D
-from src import graficas as G
-from src import modelo as M
+import datos as D
+import graficas as G
+import modelo as M
 
 st.set_page_config(
     page_title="Random Forest · Tensión de liquidez",
@@ -155,6 +161,12 @@ st.sidebar.caption(
 # ---------------------------------------------------------------------------
 try:
     df_raw = cargar(archivo.getvalue() if archivo else None, archivo.name if archivo else None)
+except FileNotFoundError:
+    st.error(
+        "No se encontró la base prototipo en `data/Base_Didactica_Random_Forest_Capital_Trabajo.xlsx`. "
+        "Súbala al repositorio dentro de la carpeta `data` o use la opción 'Subir archivo' de la barra lateral."
+    )
+    st.stop()
 except Exception as e:  # noqa: BLE001
     st.error(f"No se pudo leer el archivo: {e}")
     st.stop()

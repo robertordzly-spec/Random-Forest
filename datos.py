@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pandas as pd
 
-RUTA_BASE = Path(__file__).resolve().parent.parent / "data" / "Base_Didactica_Random_Forest_Capital_Trabajo.xlsx"
+RUTA_BASE = Path(__file__).resolve().parent / "data" / "Base_Didactica_Random_Forest_Capital_Trabajo.xlsx"
 HOJA_DATOS = "Datos_Modelo"
 
 TARGET = "Tension_Liquidez_bin"

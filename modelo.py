@@ -22,7 +22,7 @@ from sklearn.metrics import (
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
-from src.datos import CATEGORICAS, NUMERICAS
+from datos import CATEGORICAS, NUMERICAS
 
 RANDOM_STATE = 42
 
